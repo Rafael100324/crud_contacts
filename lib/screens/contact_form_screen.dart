@@ -14,19 +14,28 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
   final _formKey = GlobalKey<FormState>();
   late String _name;
   late String _phone;
+  late String _email;
+  late String _nickname;
 
   @override
   void initState() {
     super.initState();
     _name = widget.contact?.name ?? '';
     _phone = widget.contact?.phone ?? '';
+    _email = widget.contact?.email ?? '';
+    _nickname = widget.contact?.nickname ?? '';
   }
 
   void _saveContact() async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      final newContact =
-          Contact(name: _name, phone: _phone, id: widget.contact?.id);
+      final newContact = Contact(
+        name: _name,
+        phone: _phone,
+        email: _email,
+        nickname: _nickname,
+        id: widget.contact?.id,
+      );
       if (widget.contact == null) {
         await DatabaseHelper().insertContact(newContact.toMap());
       } else {
@@ -69,6 +78,28 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
                   return null;
                 },
                 onSaved: (value) => _phone = value!,
+              ),
+              TextFormField(
+                initialValue: _email,
+                decoration: InputDecoration(labelText: 'Email'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Insira o email';
+                  }
+                  return null;
+                },
+                onSaved: (value) => _email = value!,
+              ),
+              TextFormField(
+                initialValue: _nickname, // Campo de apelido
+                decoration: InputDecoration(labelText: 'Apelido'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Insira o apelido';
+                  }
+                  return null;
+                },
+                onSaved: (value) => _nickname = value!,
               ),
               SizedBox(height: 20),
               ElevatedButton(

@@ -18,11 +18,23 @@ class DatabaseHelper {
     String path = join(await getDatabasesPath(), 'contacts.db');
     return await openDatabase(
       path,
-      version: 1,
+      version: 2,
       onCreate: (db, version) {
         return db.execute(
-          "CREATE TABLE contacts(id INTEGER PRIMARY KEY, name TEXT, phone TEXT)",
+          '''CREATE TABLE contacts(
+            id INTEGER PRIMARY KEY, 
+            name TEXT, 
+            phone TEXT, 
+            email TEXT,   
+            nickname TEXT
+          )''',
         );
+      },
+      onUpgrade: (db, oldVersion, newVersion) {
+        if (oldVersion < 2) {
+          db.execute('ALTER TABLE contacts ADD COLUMN email TEXT');
+          db.execute('ALTER TABLE contacts ADD COLUMN nickname TEXT');
+        }
       },
     );
   }

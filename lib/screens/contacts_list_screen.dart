@@ -41,7 +41,9 @@ class _ContactsListScreenState extends State<ContactsListScreen> {
           final contact = _contacts[index];
           return ListTile(
             title: Text(contact.name),
-            subtitle: Text(contact.phone),
+            subtitle: Text(
+              'Telefone: ${contact.phone}\nEmail: ${contact.email}\nApelido: ${contact.nickname}', // Exibindo email e apelido
+            ),
             trailing: IconButton(
               icon: Icon(Icons.delete),
               onPressed: () => _deleteContact(contact.id!),
