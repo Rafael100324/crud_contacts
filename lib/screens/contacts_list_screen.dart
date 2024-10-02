@@ -39,23 +39,33 @@ class _ContactsListScreenState extends State<ContactsListScreen> {
         itemCount: _contacts.length,
         itemBuilder: (context, index) {
           final contact = _contacts[index];
-          return ListTile(
-            title: Text(contact.name),
-            subtitle: Text(
-              'Telefone: ${contact.phone}\nEmail: ${contact.email}\nApelido: ${contact.nickname}', // Exibindo email e apelido
-            ),
-            trailing: IconButton(
-              icon: Icon(Icons.delete),
-              onPressed: () => _deleteContact(contact.id!),
-            ),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ContactFormScreen(contact: contact),
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Card(
+              color: Colors.grey[200],
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12.0),
+              ),
+              child: ListTile(
+                leading: Icon(Icons.person, size: 40.0, color: Colors.blue),
+                title: Text(contact.name),
+                subtitle: Text(
+                  'Telefone: ${contact.phone}\nEmail: ${contact.email}\nApelido: ${contact.nickname}',
                 ),
-              ).then((_) => _loadContacts());
-            },
+                trailing: IconButton(
+                  icon: Icon(Icons.delete),
+                  onPressed: () => _deleteContact(contact.id!),
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ContactFormScreen(contact: contact),
+                    ),
+                  ).then((_) => _loadContacts());
+                },
+              ),
+            ),
           );
         },
       ),

@@ -57,9 +57,22 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
           key: _formKey,
           child: Column(
             children: [
+              // Campo Nome
               TextFormField(
                 initialValue: _name,
-                decoration: InputDecoration(labelText: 'Nome'),
+                decoration: InputDecoration(
+                  labelText: 'Nome',
+                  fillColor: Colors.white,
+                  filled: true,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                    borderSide: BorderSide.none,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Insira o nome';
@@ -68,9 +81,24 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
                 },
                 onSaved: (value) => _name = value!,
               ),
+              SizedBox(height: 16.0),
+
+              // Campo Telefone
               TextFormField(
                 initialValue: _phone,
-                decoration: InputDecoration(labelText: 'Telefone'),
+                decoration: InputDecoration(
+                  labelText: 'Telefone',
+                  fillColor: Colors.white,
+                  filled: true,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                    borderSide: BorderSide.none,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Insira o telefone';
@@ -79,9 +107,24 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
                 },
                 onSaved: (value) => _phone = value!,
               ),
+              SizedBox(height: 16.0),
+
+              // Campo Email
               TextFormField(
                 initialValue: _email,
-                decoration: InputDecoration(labelText: 'Email'),
+                decoration: InputDecoration(
+                  labelText: 'Email',
+                  fillColor: Colors.white,
+                  filled: true,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                    borderSide: BorderSide.none,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Insira o email';
@@ -90,9 +133,24 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
                 },
                 onSaved: (value) => _email = value!,
               ),
+              SizedBox(height: 16.0),
+
+              // Campo Apelido
               TextFormField(
-                initialValue: _nickname, // Campo de apelido
-                decoration: InputDecoration(labelText: 'Apelido'),
+                initialValue: _nickname,
+                decoration: InputDecoration(
+                  labelText: 'Apelido',
+                  fillColor: Colors.white,
+                  filled: true,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                    borderSide: BorderSide.none,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Insira o apelido';
@@ -102,6 +160,8 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
                 onSaved: (value) => _nickname = value!,
               ),
               SizedBox(height: 20),
+
+              // Botão Salvar
               ElevatedButton(
                 onPressed: _saveContact,
                 child: Text('Salvar'),
