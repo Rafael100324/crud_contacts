@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:crud_contacts/screens/contacts_list_screen.dart';
-import 'theme.dart';
 
 void main() {
   runApp(MyApp());
